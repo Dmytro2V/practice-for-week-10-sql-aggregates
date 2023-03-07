@@ -17,3 +17,10 @@ SELECT  min(birth_year), max(birth_year) FROM cats;
 SELECT  * FROM cats WHERE birth_year IN ((SELECT min(birth_year) FROM cats),
                                         (SELECT max(birth_year) FROM cats))
 ;
+.print === BONUS =======Step 1: GROUP BY
+.print ----- Write a query to list the number of toys per cat.
+
+SELECT  name, count(toys.id) 
+    FROM cats JOIN toys ON (cats.id = toys.cat_id)
+    GROUP BY (cat.id)
+;
