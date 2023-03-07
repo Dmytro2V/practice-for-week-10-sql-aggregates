@@ -13,7 +13,7 @@ SELECT  id, name, max(birth_year) FROM cats;
 SELECT  * FROM cats WHERE birth_year = (SELECT min(birth_year) FROM cats);
 
 .print Can you query for both cats in one simple SELECT?
-SELECT  min(birth_year), max(birth_year) FROM cats;
+SELECT  (name, min(birth_year)), (name, max(birth_year)) FROM cats;
 SELECT  * FROM cats WHERE birth_year IN ((SELECT min(birth_year) FROM cats),
                                         (SELECT max(birth_year) FROM cats))
 ;
