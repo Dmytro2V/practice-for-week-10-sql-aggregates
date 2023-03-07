@@ -31,3 +31,11 @@ SELECT  cats.name, count(toys.id) as toys_count
     GROUP BY (cats.id)
     HAVING toys_count > 1
 ;
+SELECT name
+FROM cats
+WHERE id IN (
+  SELECT cat_id
+  FROM toys
+  WHERE 
+    name = 'Scratcher'
+);
