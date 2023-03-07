@@ -20,7 +20,14 @@ SELECT  * FROM cats WHERE birth_year IN ((SELECT min(birth_year) FROM cats),
 .print === BONUS =======Step 1: GROUP BY
 .print ----- Write a query to list the number of toys per cat.
 
-SELECT  name, count(toys.id) 
+SELECT  cats.name, count(toys.id) 
     FROM cats JOIN toys ON (cats.id = toys.cat_id)
-    GROUP BY (cat.id)
+    GROUP BY (cats.id)
+;
+.print ------- Step 2: HAVING 
+.print ------Write a query to determine which cats have been "spoiled" with two or more toys.
+SELECT  cats.name, count(toys.id) as toys_count 
+    FROM cats JOIN toys ON (cats.id = toys.cat_id)
+    GROUP BY (cats.id)
+    HAVING toys_count > 1
 ;
